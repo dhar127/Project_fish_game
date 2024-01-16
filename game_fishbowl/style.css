@@ -1,0 +1,460 @@
+html{
+    font-size: 5vh;
+}
+
+@media screen and (min-height: 400px) {
+    html{
+        font-size: 19px;
+    }
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #eb80b1;
+}
+
+@keyframes swimming {
+    0%,
+    100%{
+        transform: translateX(0);
+    }
+    22.5%{
+        transform: translateX(2.5rem) skewY(-5deg);
+    }
+    45%{
+        transform: translateX(6rem) translateY(-1rem)  skewY(5deg);
+    }
+    55%{
+        transform: translateX(5rem) translateY(-0.5rem)  scaleX(-1);
+    }
+    95%{
+        transform: translateX(0) scaleX(-1)  skewY(10deg);
+    }
+}
+
+@keyframes dead {
+    0%,
+    100%{
+        transform: translateX(2.5rem);
+    }
+    22.5%{
+        transform: translateX(2.5rem) translateY(-1rem)  skewY(-5deg);
+    }
+    45%{
+        transform: translateX(2.5rem) skewY(5deg);
+    }
+    55%{
+        transform: translateX(2.5rem) translateY(-1rem)  skewY(-5deg);
+    }
+    95%{
+        transform: translateX(2.5rem)  skewY(5deg);
+    }
+}
+
+.fishbowl{
+    position: relative;
+    width: 15rem;
+    height: 15rem;
+}
+
+.fishbowl_background{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50% 50% 40% 40%;
+    background: linear-gradient(transparent 10%, #fff 150%);
+    border-bottom: 1px solid #FFF;
+}
+
+.fishbowl:before{
+    content:"";
+    position: absolute;
+    bottom: 9.5rem;
+    left: 2rem;
+    width: 100%;
+    height: 30%;
+    border-radius: 50%;
+    box-shadow: -4rem 10rem 1rem 0 rgba(0,0,56,0.3);
+    transform: rotate(5deg);
+}
+
+.fishbowl:after{
+    content:"";
+    position: absolute;
+    top: 12.5%;
+    left: 2.5%;
+    width: 95%;
+    height: 85%;
+    border-radius: 40%;
+    background: linear-gradient(135deg,transparent 50%,#fff 150%);
+}
+
+.fishbowl_bottom{
+    
+    position: absolute;
+    bottom: 5%;
+    left: 17.5%;
+    width: 65%;
+    height: 20%;
+    border-radius: 50%;
+    background: linear-gradient(#f5fccd,#ff7d6f 200%);
+}
+
+.fishbowl_decoration{
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: 90%;
+    height: 75%;
+}
+
+.fs{
+    position:absolute;
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-bottom: 5rem solid #80c0a1;
+}
+
+.fs1{
+    bottom: 15%;
+    right: 20%;
+    border-bottom: 5rem solid #80c0a1;
+}
+
+.fs2{
+    bottom: 10%;
+    right: 30%;
+    border-bottom: 8rem solid #80c0a1;
+}
+.fs3{
+    bottom: 15%;
+    right: 40%;
+    border-bottom: 6rem solid #80c0a1;
+}
+.water{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    width: 90%;
+    height: 80%;
+    border-radius: 40% 40% 4.8rem 4.8rem;
+    transition: height 0.3s ease;
+    overflow: hidden;
+}
+.watercolor{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: calc(1% * var(--filling,90));
+    border-radius: 20% 20% 4rem 4rem;
+    transition: height 0.5s linear;
+    background: linear-gradient(transparent -50%,#419197 250%);
+}
+.watercolor:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left:5%;
+    width:90%;
+    height: 3rem;
+    border-radius: 50%;
+    background: linear-gradient(transparent 0%,#419197 250%);
+    box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.5);
+}
+.fishbowltop{
+    position: absolute;
+    top: 5%;
+    left:15%;
+    width:70%;
+    height: 20%;
+    border-radius: 50%;
+    box-shadow: inset 0 2px 2px 3px rgba(255,255,255,0.3);
+}
+.fish{
+    position: absolute;
+    bottom: 25%;
+    left: 18%;
+    width: 2rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: linear-gradient(#fff -200%,orange);
+    box-shadow: 0 2rem 4px -2px rgba(0,0,56,0.3);
+    transition-property: bottom,transform,box-shadow;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+    animation: swimming;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+.fish:after{
+    content: "";
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 0 0,#fff -100%,#124868);
+    transition: height 0.5s ease;
+}
+.fish--dying{
+    bottom: 10%;
+    box-shadow: 0 1rem 4px -2px rgba(0,0,56,0.3);
+}
+.fish--dying .tail{
+    box-shadow: 0 1rem 4px -2px rgba(0,0,56,0.3);
+}
+.fish--dead{
+    animation: dead;
+    animation-duration: 2s;
+    animation-iteration-count: 2;
+    animation-fill-mode: forwards;
+    box-shadow: none;
+}
+.fish--dead-tail{
+    box-shadow: none;
+}
+.fish--dead:after{
+    height: 0.125rem;
+}
+.fish--floating{
+    bottom: max(calc(var(--filling,0)*1%-15%),10%);
+    transform: translateX(2.5rem);
+    animation: none;
+    box-shadow: none;
+}
+.fish--floating:after{
+    height: 2px;
+}
+.fish--floating .fish.tail{
+    box-shadow: none;
+}
+.fish .tail{
+    position: absolute;
+    top: 0;
+    left: -0.75rem;
+    width: 0;
+    height: 0;
+    border-top: 0.5rem solid transparent;
+    border-bottom: 0.5rem solid transparent;
+    border-left: 0.94rem solid orange;
+    box-shadow: 0 2rem 4px -2px rgba(0,0,56,0.3);
+    transition: box-shadow 1s ease;
+}
+.fishbowl_pool{
+    position: absolute;
+    right: 0;
+    bottom: -5%;
+    width: 50%;
+    height: 15%;
+    border-radius:50%;
+    background: linear-gradient(#fff,100%,#419197);
+    opacity: 0.5;
+}
+.fishbowl_pool:after {
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    border-right: 2px solid #fff;
+    border-radius: 50%;
+    animation: wave 3s infinite linear;
+    opacity: 0.5;
+}
+
+@keyframes wave {
+    0% {
+        transform: translate(0%, 0%);
+    }
+    50% {
+        transform: translate(-15%, -15%);
+    }
+    100% {
+        transform: translate(0%, 0%);
+    }
+}
+
+.tap{
+    position: absolute;
+    bottom: 0;
+    left: -3rem;
+    width: 12rem;
+    height: 15.9rem;
+    cursor: pointer;
+}
+
+.tap .handle::after{
+    animation: handle;
+    animation-duration: 0.5s;
+}
+@keyframes handle {
+    from{
+        transform: rotate(45deg);
+    }
+    to{
+        transform: rotate(45deg);
+    }
+}
+.tap .base{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2rem;
+    height: 14rem;
+    border-radius: 0 0 1.2rem 1.2rem;
+    box-shadow: inset -1px -1px 0 0px rgba(255,255,255,255,0.5);
+    background: linear-gradient(#919ea3,#66777F 150%);
+}
+.tap .base:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: 4rem;
+    right: 15rem;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem 1rem 0 0;
+    box-shadow: -4rem 10rem 1rem 0 rgba(0,0,56,0.3);
+    transform: rotate(-70deg);
+}
+.tap .base:after{
+    content:"";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,transparent,rgba(255,255,255,0.4)
+    60%,transparent 200%);
+    border-radius: 0 0 1.2rem 1.2rem;
+}
+.tap .handle{
+    position: absolute;
+    left: -1rem;
+    bottom: 6rem;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle at 0 0, #fff -100%,#919ea3);
+    border-radius: 0.2rem;
+    border-top: 1px solid #fff;
+    border-right: 1px solid rgba(255,255,255,0.5);
+    transform: rotate(45deg);
+}
+.tap .handle:after{
+    content:"";
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 0 0,  #fff -200%,#419197);
+}
+.tap .stream{
+    position: absolute;
+    top: 2rem;
+    left: 6.25rem;
+    width: 1.5rem;
+    height: 0;
+    background:linear-gradient(#fff,-100%,#419197);
+    border-radius: 1rem;
+    opacity: 0.3;
+}
+.tap .stream {
+    animation: stream 0.5s;
+
+}
+
+@keyframes stream {
+    from {
+        height: 0;
+    }
+    50% {
+        top: 2rem;
+        height: calc(14rem - var(--filling) * 0.1rem);
+    }
+    to {
+        top: calc(2rem + 14rem - var(--filling) * 0.1rem);
+        height: 0;
+    }
+}
+.tap .head{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4rem;
+    height: 0rem;
+    border-radius: 50% 50% 0 0;
+    border-top: 2rem solid #919ea3;
+    border-left: 2rem solid #919ea3;
+    border-right: 2rem solid #919ea3;
+    box-shadow: 1px -1px 0 0 #fff;
+}
+.tap .head:before{
+    content:"";
+    position: absolute;
+    z-index: -1;
+    bottom: 3rem;
+    right: 23rem;
+    width: 150%;
+    height: 200%;
+    box-shadow: -4rem 10rem 1rem 1rem rgba(0,0,56,0.3);
+    transform: rotate(2deg) skewX(60deg);
+}
+.tap .head:after{
+    content:"";
+    position: absolute;
+    top: -2rem;
+    left: -2rem;
+    width: 8rem;
+    height: 2rem;
+    background: linear-gradient(transparent,rgba(255,255,255,0.4)60%,transparent 200%);
+    border-radius: 50% 50% 0 50%;
+}
+.tap .end{
+    position: absolute;
+    left: 6rem;
+    top: 1.5rem;
+    width: 2rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: linear-gradient(#fff,-70%,#919ea3);
+}
+.tap .text{
+    position: absolute;
+    top: 4rem;
+    left: -6rem;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.875rem;
+}
+.tap .text:after{
+    content:"";
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem; 
+    width: 2rem;
+    height: 1px;
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+@media screen and (max-width: 420px) {
+    .fishbowl{
+        left: 13%;
+    }
+    .tap .text{
+        width: 2rem;
+        top: 1rem;
+        left: -3.5rem;
+    }
+    
+}
